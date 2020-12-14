@@ -43,9 +43,14 @@ public class WeaponController : MonoBehaviour
 
             if (Physics.Raycast(camRay, out rayHit))
             {
-                //If target - calculate points
+                if (rayHit.collider.CompareTag("Target"))
+                {
+                    rayHit.collider.GetComponent<TargetController>().OnShot(rayHit.point);
+                }
 
                 //Leave decal
+                //Play anim
+                //Play sound
 
                 Debug.Log("Pew pew");
             }

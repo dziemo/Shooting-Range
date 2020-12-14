@@ -64,6 +64,7 @@ public class PlayerShooting : MonoBehaviour
                 currentWeapon.transform.SetParent(null);
                 currentWeapon.transform.position = hoverWeapon.transform.position;
                 currentWeapon.transform.rotation = hoverWeapon.transform.rotation;
+                currentWeapon.transform.Rotate(Vector3.up, Random.Range(0, 180), Space.World);
                 currentWeaponController.OnThrow();
             }
 
