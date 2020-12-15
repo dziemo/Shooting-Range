@@ -28,7 +28,7 @@ public class PlayerShooting : MonoBehaviour
         if (isShooting && currentWeaponController)
         {
             currentWeaponController.OnPerformFire();
-            ammoText.text = currentWeaponController.currAmmo.ToString();
+            UpdateAmmoText();
         }
 
         Ray camRay = new Ray(cam.transform.position, cam.transform.forward);
@@ -54,7 +54,11 @@ public class PlayerShooting : MonoBehaviour
     
     void OnReload ()
     {
-        currentWeaponController.OnReload();
+        currentWeaponController.OnReload(UpdateAmmoText);
+    }
+
+    void UpdateAmmoText ()
+    {
         ammoText.text = currentWeaponController.currAmmo.ToString();
     }
 
@@ -79,7 +83,7 @@ public class PlayerShooting : MonoBehaviour
             currentWeapon.transform.localRotation = Quaternion.identity;
             currentWeaponController = currentWeapon.GetComponent<WeaponController>();
             currentWeaponController.OnPickup();
-            ammoText.text = currentWeaponController.currAmmo.ToString();
+            UpdateAmmoText();
         }
     }
 }

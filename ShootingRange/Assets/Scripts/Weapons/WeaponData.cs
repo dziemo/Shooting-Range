@@ -7,5 +7,6 @@ public class WeaponData : ScriptableObject
 {
     public float fireRate;
     public float accuracy;
+    public float reloadSpeed;
     public int maxAmmo;
 }

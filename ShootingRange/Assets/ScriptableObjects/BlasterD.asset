@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 0.2
   accuracy: 1
+  reloadSpeed: 2
   maxAmmo: 30
