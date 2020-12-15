@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
     public Transform gunPos;
     public float weaponPickupDistance;
+
+    public TextMeshProUGUI ammoText;
 
     GameObject currentWeapon;
     GameObject hoverWeapon;
@@ -25,6 +28,7 @@ public class PlayerShooting : MonoBehaviour
         if (isShooting && currentWeaponController)
         {
             currentWeaponController.OnPerformFire();
+            ammoText.text = currentWeaponController.currAmmo.ToString();
         }
 
         Ray camRay = new Ray(cam.transform.position, cam.transform.forward);
@@ -51,6 +55,7 @@ public class PlayerShooting : MonoBehaviour
     void OnReload ()
     {
         currentWeaponController.OnReload();
+        ammoText.text = currentWeaponController.currAmmo.ToString();
     }
 
     //OnAimDownSights()
@@ -74,6 +79,7 @@ public class PlayerShooting : MonoBehaviour
             currentWeapon.transform.localRotation = Quaternion.identity;
             currentWeaponController = currentWeapon.GetComponent<WeaponController>();
             currentWeaponController.OnPickup();
+            ammoText.text = currentWeaponController.currAmmo.ToString();
         }
     }
 }

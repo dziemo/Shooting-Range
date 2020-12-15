@@ -6,7 +6,8 @@ public class WeaponController : MonoBehaviour
 {
     public WeaponData weaponData;
 
-    int currAmmo;
+    public int currAmmo;
+
     float timeBetweenShots = 0f;
 
     Collider coll;
