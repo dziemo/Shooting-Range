@@ -109,4 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bddac4218f76dc4eb43b5a848739585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  onShotEvent: {fileID: 0}
+  radius: 1.8

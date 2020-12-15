@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour
 {
-    public GameEvent onShotEvent;
+    public IntGameEvent onShotEvent;
+    public float radius = 1.7f;
 
     public void OnShot (Vector2 point)
     {
-        Debug.Log("Distance to center: " + Vector2.Distance(transform.position, point));
-        onShotEvent.Raise();
-        Destroy(gameObject);
+        int score = (int)((radius - Vector2.Distance(transform.position, point) / radius) * 10) * 10;
+        onShotEvent.Raise(score);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, radius);
     }
 }
