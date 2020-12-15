@@ -47,12 +47,14 @@ public class WeaponController : MonoBehaviour
                 {
                     rayHit.collider.GetComponent<TargetController>().OnShot(rayHit.point);
                 }
+                if (rayHit.collider.CompareTag("StartTarget"))
+                {
+                    rayHit.collider.GetComponent<StartTargetController>().OnShot();
+                }
 
                 //Leave decal
                 //Play anim
                 //Play sound
-
-                Debug.Log("Pew pew");
             }
 
             currAmmo--;

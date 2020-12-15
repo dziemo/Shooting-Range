@@ -8,9 +8,11 @@ public class TimeAttackMode : MonoBehaviour
 {
     public Transform targetsParent;
     public FloatVariable timeLeft;
+    public GameObject startTarget;
 
     public TextMeshPro scoreDisplay;
     public TextMeshPro timeDisplay;
+
 
     List<GameObject> allTargets = new List<GameObject>();
     GameObject activeTarget;
@@ -21,13 +23,13 @@ public class TimeAttackMode : MonoBehaviour
 
     private void Start()
     {
+        startTarget.SetActive(true);
+
         foreach (Transform target in targetsParent)
         {
             target.gameObject.SetActive(false);
             allTargets.Add(target.gameObject);
         }
-
-        StartMode();
     }
 
     private void Update()
@@ -44,6 +46,7 @@ public class TimeAttackMode : MonoBehaviour
 
     public void StartMode ()
     {
+        startTarget.SetActive(false);
         inProgress = true;
         score = 0;
         timeLeft.Value = 30f;
@@ -55,6 +58,7 @@ public class TimeAttackMode : MonoBehaviour
 
     public void EndMode ()
     {
+        startTarget.SetActive(true);
         timeDisplay.text = 0.ToString();
         inProgress = false;
         if (activeTarget)
