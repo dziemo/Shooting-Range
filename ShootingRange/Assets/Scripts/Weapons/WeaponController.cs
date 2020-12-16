@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using ScriptableObjectArchitecture;
 
 public class WeaponController : MonoBehaviour
 {
     public WeaponData weaponData;
     public int currAmmo;
     public ParticleSystem muzzleFlash;
+    public AudioSource fireSound;
+
+    Collider coll;
+    Camera cam;
+    BulletHolesPool holesPool;
 
     float timeBetweenShots = 0f;
     bool isReloading = false;
-    Collider coll;
-    Camera cam;
 
     private void Start()
     {
@@ -21,6 +25,7 @@ public class WeaponController : MonoBehaviour
         currAmmo = weaponData.maxAmmo;
         cam = Camera.main;
         muzzleFlash.gameObject.GetComponent<Renderer>().material = weaponData.muzzleFlashMat;
+        holesPool = GetComponent<BulletHolesPool>();
     }
 
     public void OnPickup ()
@@ -54,8 +59,8 @@ public class WeaponController : MonoBehaviour
             muzzleFlash.Play();
             transform.DOPunchPosition(new Vector3(0, 0, weaponData.kickback), weaponData.fireRate * 0.9f);
             transform.DOPunchRotation(new Vector3(weaponData.shotRotation, 0, 0), weaponData.fireRate * 0.9f);
-            
-            //Play sound
+
+            fireSound.Play();
 
             Ray camRay = new Ray(cam.transform.position, cam.transform.forward);
             RaycastHit rayHit;
@@ -73,7 +78,7 @@ public class WeaponController : MonoBehaviour
                 }
                 else
                 {
-                    var bulletHole = Instantiate(weaponData.bulletHole, rayHit.point + rayHit.normal * 0.001f, Quaternion.LookRotation(-rayHit.normal));
+                    holesPool.OnBulletHoleSpawned(rayHit);
                 }
             }
 

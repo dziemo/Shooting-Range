@@ -12,5 +12,4 @@ public class WeaponData : ScriptableObject
     public float shotRotation;
     public int maxAmmo;
     public Material muzzleFlashMat;
-    public GameObject bulletHole;
 }
