@@ -8,5 +8,9 @@ public class WeaponData : ScriptableObject
     public float fireRate;
     public float accuracy;
     public float reloadSpeed;
+    public float kickback;
+    public float shotRotation;
     public int maxAmmo;
+    public Material muzzleFlashMat;
+    public GameObject bulletHole;
 }

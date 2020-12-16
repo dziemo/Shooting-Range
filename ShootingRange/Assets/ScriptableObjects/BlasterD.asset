@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a8efc8b9c64894ba3ee3cfbc32871c, type: 3}
   m_Name: BlasterD
   m_EditorClassIdentifier: 
-  fireRate: 0.2
+  fireRate: 0.15
   accuracy: 1
   reloadSpeed: 2
+  kickback: 0.025
+  shotRotation: 0
   maxAmmo: 30
+  muzzleFlashMat: {fileID: 2100000, guid: 5723895f24d3d1a48b71ca9629b42537, type: 2}
+  bulletHole: {fileID: 2213425025182070262, guid: 9d5b3bf84fd20d745b7cf733862db67b,
+    type: 3}
